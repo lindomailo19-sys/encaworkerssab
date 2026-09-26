@@ -1,4 +1,4 @@
-const CACHE="mi-cache-v2"
+const CACHE="mi-cache-v3"
 
 const RECURSOS=[
     "./",
@@ -10,16 +10,16 @@ const RECURSOS=[
 ]
 
 self.addEventListener("install",event=>{
-    evento.esperarHasta(
-        cachés.abrir(CACHE)
-        .entonces(caché=>caché.addAll(RECURSOS))
+    event.waitUntil(
+        caches.open(CACHE)
+        .then(cache=>cache.addAll(RECURSOS))
     );
 })
 self.addEventListener("fetch",event=>{
-    evento.responderCon(
-        cachés.coincidencia(evento.solicitud)
+    event.respondWith(
+        caches.match(event.request)
         .then(respuesta=>{
-            return respuesta || fetch(evento.solicitud);
+            return respuesta || fetch(event.request);
         })
         .catch(()=>{
             return caches.match("/offline.html")
