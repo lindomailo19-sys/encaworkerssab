@@ -492,15 +492,17 @@
           </ul>
         </div>
       </div>
+      hola
     </footer>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script>
+        
         if("serviceWorker" in navigator){
             navigator.serviceWorker.register("sw.js")
-            .then(reg=>console.log('está funcionando Worker',reg))
+            .then(reg=>console.log('Está funcionando workers',reg))
             .catch(err=>console.log("Error en el service Worker",err));
-            
         }
+    
     </script>
 </body>
 </html>

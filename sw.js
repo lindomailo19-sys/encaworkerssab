@@ -1,4 +1,4 @@
-const CACHE="mi-cache-v1"
+const CACHE="mi-cache-v2"
 
 const RECURSOS=[
     "./",
@@ -7,23 +7,22 @@ const RECURSOS=[
     "./css/bootstrap.min.css",
     "./css/estilos.css",
     "./js/bootstrap.bundle.min.js"
-
 ]
-self.addEventListener("fetch",event=>{
-    event.waitUntil(
-        caches.open(CACHE)
-        .then(cache.addAll(RECURSOS))
+
+self.addEventListener("install",event=>{
+    evento.esperarHasta(
+        cachés.abrir(CACHE)
+        .entonces(caché=>caché.addAll(RECURSOS))
     );
 })
 self.addEventListener("fetch",event=>{
-    event.respondWith(
-        caches.match(event.request)
+    evento.responderCon(
+        cachés.coincidencia(evento.solicitud)
         .then(respuesta=>{
-             return respuesta || fetch(event.request)
+            return respuesta || fetch(evento.solicitud);
         })
         .catch(()=>{
             return caches.match("/offline.html")
         })
-       
     )
 })
